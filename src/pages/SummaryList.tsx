@@ -22,6 +22,7 @@ export const SummaryList = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 15;
+  const navigate = useNavigate();
 
   // Filter summaries
   const filteredSummaries = mockSummaries.filter((summary) => {
@@ -87,7 +88,10 @@ export const SummaryList = () => {
             <SummaryCard
               key={summary.id}
               {...summary}
-              onClick={() => console.log("Navigate to detail:", summary.id)}
+              onClick={() => {
+                console.log("Navigate to detail:", summary.id)
+                navigate('/summary/:id')
+              }}
             />
           ))}
         </div>
