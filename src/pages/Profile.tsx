@@ -227,6 +227,105 @@ export const Profile = () => {
             </CardContent>
           </Card>
         </div>
+
+        {/* 내가 업로드한 요약본 */}
+        <Card>
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <User className="h-5 w-5" />
+              내가 업로드한 요약본
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-4">
+              {[
+                { id: "1", title: "React 컴포넌트 설계 패턴", subject: "프론트엔드", date: "2024-01-15", views: 156 },
+                { id: "2", title: "Node.js 성능 최적화", subject: "백엔드", date: "2024-01-10", views: 89 },
+                { id: "3", title: "TypeScript 타입 활용법", subject: "프로그래밍", date: "2024-01-05", views: 134 }
+              ].map((item) => (
+                <div key={item.id} className="p-4 border rounded-lg hover:bg-muted/50 transition-colors">
+                  <div className="flex items-start justify-between">
+                    <div className="space-y-1">
+                      <div className="flex items-center gap-2">
+                        <Badge variant="outline" className="text-xs">{item.subject}</Badge>
+                        <span className="text-sm text-muted-foreground">{item.date}</span>
+                      </div>
+                      <h3 className="font-medium">{item.title}</h3>
+                      <p className="text-sm text-muted-foreground">조회 {item.views}회</p>
+                    </div>
+                    <Button variant="outline" size="sm">수정</Button>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* 즐겨찾기 */}
+        <Card>
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <Calendar className="h-5 w-5" />
+              즐겨찾기
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-4">
+              {[
+                { id: "1", title: "Python 데이터 분석 기초", author: "박데이터", subject: "데이터과학", date: "2024-01-12" },
+                { id: "2", title: "AWS 클라우드 아키텍처", author: "이클라우드", subject: "클라우드", date: "2024-01-08" },
+                { id: "3", title: "머신러닝 알고리즘 비교", author: "김머신", subject: "AI/ML", date: "2024-01-03" }
+              ].map((item) => (
+                <div key={item.id} className="p-4 border rounded-lg hover:bg-muted/50 transition-colors">
+                  <div className="flex items-start justify-between">
+                    <div className="space-y-1">
+                      <div className="flex items-center gap-2">
+                        <Badge variant="outline" className="text-xs">{item.subject}</Badge>
+                        <span className="text-sm text-muted-foreground">by {item.author}</span>
+                        <span className="text-sm text-muted-foreground">{item.date}</span>
+                      </div>
+                      <h3 className="font-medium">{item.title}</h3>
+                    </div>
+                    <Button variant="outline" size="sm">제거</Button>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* 조회한 요약 */}
+        <Card>
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <Mail className="h-5 w-5" />
+              최근 조회한 요약
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-4">
+              {[
+                { id: "1", title: "Docker 컨테이너 운영", author: "최도커", subject: "DevOps", date: "2024-01-16" },
+                { id: "2", title: "GraphQL API 설계", author: "그래프", subject: "백엔드", date: "2024-01-14" },
+                { id: "3", title: "Vue.js 3 Composition API", author: "뷰개발", subject: "프론트엔드", date: "2024-01-11" }
+              ].map((item) => (
+                <div key={item.id} className="p-4 border rounded-lg hover:bg-muted/50 transition-colors">
+                  <div className="flex items-start justify-between">
+                    <div className="space-y-1">
+                      <div className="flex items-center gap-2">
+                        <Badge variant="outline" className="text-xs">{item.subject}</Badge>
+                        <span className="text-sm text-muted-foreground">by {item.author}</span>
+                        <span className="text-sm text-muted-foreground">{item.date}</span>
+                      </div>
+                      <h3 className="font-medium">{item.title}</h3>
+                    </div>
+                    <Button variant="outline" size="sm">제거</Button>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
       </div>
     </div>
   );
