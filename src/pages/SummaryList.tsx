@@ -6,6 +6,7 @@ import { SearchBar } from "@/components/SearchBar";
 import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import heroImage from "@/assets/hero-banner.jpg";
+import { useNavigate } from "react-router-dom"
 
 // Mock data
 const mockSummaries = Array.from({ length: 50 }, (_, i) => ({
