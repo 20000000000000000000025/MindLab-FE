@@ -6,7 +6,7 @@ import { SearchBar } from "@/components/SearchBar";
 import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import heroImage from "@/assets/hero-banner.jpg";
-import { useNavigate } from "react-router-dom"
+import { useNavigate } from 'react-router-dom';
 
 // Mock data
 const mockSummaries = Array.from({ length: 50 }, (_, i) => ({
@@ -22,8 +22,8 @@ export const SummaryList = () => {
   const [selectedSubject, setSelectedSubject] = useState("전체");
   const [searchQuery, setSearchQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 15;
   const navigate = useNavigate();
+  const itemsPerPage = 15;
 
   // Filter summaries
   const filteredSummaries = mockSummaries.filter((summary) => {
