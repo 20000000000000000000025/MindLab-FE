@@ -53,8 +53,8 @@ export const Profile = () => {
           )}
         </div>
 
-        <div className="grid md:grid-cols-3 gap-6">
-          {/* 프로필 카드 */}
+        <div className="grid md:grid-cols-2 gap-6">
+          {/* 프로필 카드 (왼쪽) */}
           <Card className="md:col-span-1">
             <CardHeader className="text-center">
               <Avatar className="h-24 w-24 mx-auto mb-4">
@@ -69,72 +69,40 @@ export const Profile = () => {
               </Badge>
             </CardHeader>
             <CardContent className="space-y-4">
-              <div className="flex items-center gap-3 text-sm text-muted-foreground">
-                <Mail className="h-4 w-4" />
-                <span>{profile.email}</span>
-              </div>
-              <div className="flex items-center gap-3 text-sm text-muted-foreground">
-                <Phone className="h-4 w-4" />
-                <span>{profile.phone}</span>
-              </div>
-              <div className="flex items-center gap-3 text-sm text-muted-foreground">
-                <MapPin className="h-4 w-4" />
-                <span>{profile.location}</span>
-              </div>
-              <div className="flex items-center gap-3 text-sm text-muted-foreground">
-                <Calendar className="h-4 w-4" />
-                <span>가입일: {profile.joinDate}</span>
-              </div>
-            </CardContent>
-          </Card>
-
-          {/* 정보 편집 카드 */}
-          <Card className="md:col-span-2">
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <User className="h-5 w-5" />
-                개인 정보
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-6">
               {isEditing ? (
-                <div className="grid gap-4">
-                  <div className="grid grid-cols-2 gap-4">
-                    <div className="space-y-2">
-                      <Label htmlFor="name">이름</Label>
-                      <Input
-                        id="name"
-                        value={profile.name}
-                        onChange={(e) => setProfile({...profile, name: e.target.value})}
-                      />
-                    </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="email">이메일</Label>
-                      <Input
-                        id="email"
-                        type="email"
-                        value={profile.email}
-                        onChange={(e) => setProfile({...profile, email: e.target.value})}
-                      />
-                    </div>
+                <div className="space-y-4">
+                  <div className="space-y-2">
+                    <Label htmlFor="name">이름</Label>
+                    <Input
+                      id="name"
+                      value={profile.name}
+                      onChange={(e) => setProfile({...profile, name: e.target.value})}
+                    />
                   </div>
-                  <div className="grid grid-cols-2 gap-4">
-                    <div className="space-y-2">
-                      <Label htmlFor="phone">전화번호</Label>
-                      <Input
-                        id="phone"
-                        value={profile.phone}
-                        onChange={(e) => setProfile({...profile, phone: e.target.value})}
-                      />
-                    </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="location">지역</Label>
-                      <Input
-                        id="location"
-                        value={profile.location}
-                        onChange={(e) => setProfile({...profile, location: e.target.value})}
-                      />
-                    </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="email">이메일</Label>
+                    <Input
+                      id="email"
+                      type="email"
+                      value={profile.email}
+                      onChange={(e) => setProfile({...profile, email: e.target.value})}
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="phone">전화번호</Label>
+                    <Input
+                      id="phone"
+                      value={profile.phone}
+                      onChange={(e) => setProfile({...profile, phone: e.target.value})}
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="location">지역</Label>
+                    <Input
+                      id="location"
+                      value={profile.location}
+                      onChange={(e) => setProfile({...profile, location: e.target.value})}
+                    />
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="bio">자기소개</Label>
@@ -149,68 +117,63 @@ export const Profile = () => {
                 </div>
               ) : (
                 <div className="space-y-4">
+                  <div className="flex items-center gap-3 text-sm text-muted-foreground">
+                    <Mail className="h-4 w-4" />
+                    <span>{profile.email}</span>
+                  </div>
+                  <div className="flex items-center gap-3 text-sm text-muted-foreground">
+                    <Phone className="h-4 w-4" />
+                    <span>{profile.phone}</span>
+                  </div>
+                  <div className="flex items-center gap-3 text-sm text-muted-foreground">
+                    <MapPin className="h-4 w-4" />
+                    <span>{profile.location}</span>
+                  </div>
+                  <div className="flex items-center gap-3 text-sm text-muted-foreground">
+                    <Calendar className="h-4 w-4" />
+                    <span>가입일: {profile.joinDate}</span>
+                  </div>
                   <div>
                     <h3 className="font-semibold mb-2">자기소개</h3>
                     <p className="text-muted-foreground leading-relaxed">
                       {profile.bio}
                     </p>
                   </div>
-                  
-                  <Separator />
-                  
-                  <div className="grid grid-cols-2 gap-4">
-                    <div>
-                      <h4 className="font-medium mb-1">이름</h4>
-                      <p className="text-muted-foreground">{profile.name}</p>
-                    </div>
-                    <div>
-                      <h4 className="font-medium mb-1">이메일</h4>
-                      <p className="text-muted-foreground">{profile.email}</p>
-                    </div>
-                    <div>
-                      <h4 className="font-medium mb-1">전화번호</h4>
-                      <p className="text-muted-foreground">{profile.phone}</p>
-                    </div>
-                    <div>
-                      <h4 className="font-medium mb-1">지역</h4>
-                      <p className="text-muted-foreground">{profile.location}</p>
-                    </div>
-                  </div>
                 </div>
               )}
             </CardContent>
           </Card>
-        </div>
 
-        {/* 통계 카드들 */}
-        <div className="grid md:grid-cols-2 gap-6">
-          <Card>
-            <CardContent className="p-6">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-2xl font-bold text-primary">42</p>
-                  <p className="text-sm text-muted-foreground">업로드한 요약</p>
+          {/* 통계 카드 영역 (오른쪽) */}
+          <div className="md:col-span-1 flex flex-col gap-6">
+            <Card className="flex-1">
+              <CardContent className="p-6">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-2xl font-bold text-primary">42</p>
+                    <p className="text-sm text-muted-foreground">업로드한 요약</p>
+                  </div>
+                  <div className="h-12 w-12 bg-primary/10 rounded-lg flex items-center justify-center">
+                    <User className="h-6 w-6 text-primary" />
+                  </div>
                 </div>
-                <div className="h-12 w-12 bg-primary/10 rounded-lg flex items-center justify-center">
-                  <User className="h-6 w-6 text-primary" />
+              </CardContent>
+            </Card>
+            
+            <Card className="flex-1">
+              <CardContent className="p-6">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-2xl font-bold text-primary">23</p>
+                    <p className="text-sm text-muted-foreground">누른 덜좋아요</p>
+                  </div>
+                  <div className="h-12 w-12 bg-primary/10 rounded-lg flex items-center justify-center">
+                    <Calendar className="h-6 w-6 text-primary" />
+                  </div>
                 </div>
-              </div>
-            </CardContent>
-          </Card>
-          
-          <Card>
-            <CardContent className="p-6">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-2xl font-bold text-primary">23</p>
-                  <p className="text-sm text-muted-foreground">좋아요</p>
-                </div>
-                <div className="h-12 w-12 bg-primary/10 rounded-lg flex items-center justify-center">
-                  <Calendar className="h-6 w-6 text-primary" />
-                </div>
-              </div>
-            </CardContent>
-          </Card>
+              </CardContent>
+            </Card>
+          </div>
         </div>
 
         {/* 내가 업로드한 요약본 */}

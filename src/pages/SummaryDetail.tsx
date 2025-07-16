@@ -211,8 +211,8 @@ React 애플리케이션에서 효율적인 컴포넌트 설계는 유지보수�
         {/* 본문 카드 */}
         <Card>
           <CardContent className="p-8">
-            <div className="prose prose-gray max-w-none">
-              <pre className="whitespace-pre-wrap font-sans text-foreground leading-relaxed">
+            <div className="prose max-w-none">
+              <pre className="whitespace-pre-wrap font-sans text-foreground leading-relaxed bg-card p-4 rounded-md">
                 {summary.content}
               </pre>
             </div>

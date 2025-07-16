@@ -17,7 +17,7 @@ const queryClient = new QueryClient();
 
 const AppLayout = () => {
   const location = useLocation();
-  const showHeader = !["/login", "/signup"].includes(location.pathname);
+  const showHeader = ["/", "/profile", "/upload"].includes(location.pathname);
 
   return (
     <>

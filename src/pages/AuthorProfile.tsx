@@ -117,7 +117,7 @@ export const AuthorProfile = () => {
           {/* 통계 및 활동 */}
           <div className="md:col-span-2 space-y-6">
             {/* 통계 카드들 */}
-            <div className="grid md:grid-cols-3 gap-4">
+            <div className="grid md:grid-cols-2 gap-4">
               <Card>
                 <CardContent className="p-6">
                   <div className="flex items-center justify-between">
@@ -127,20 +127,6 @@ export const AuthorProfile = () => {
                     </div>
                     <div className="h-12 w-12 bg-primary/10 rounded-lg flex items-center justify-center">
                       <BookOpen className="h-6 w-6 text-primary" />
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-              
-              <Card>
-                <CardContent className="p-6">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <p className="text-2xl font-bold text-primary">{author.stats.totalViews}</p>
-                      <p className="text-sm text-muted-foreground">총 조회수</p>
-                    </div>
-                    <div className="h-12 w-12 bg-primary/10 rounded-lg flex items-center justify-center">
-                      <Eye className="h-6 w-6 text-primary" />
                     </div>
                   </div>
                 </CardContent>
