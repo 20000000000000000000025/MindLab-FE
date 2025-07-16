@@ -28,12 +28,7 @@ export const Signup = () => {
         {/* Logo Section */}
         <div className="text-center mb-8">
           <div className="inline-flex items-center space-x-2 mb-4">
-            <div className="h-10 w-10 bg-gradient-primary rounded-lg flex items-center justify-center">
-              <Book className="h-6 w-6 text-white" />
-            </div>
-            <span className="text-2xl font-bold bg-gradient-primary bg-clip-text text-transparent">
-              Quest Summary
-            </span>
+          <img src="/Logo.png" alt="MindLab" className="h-14 w-fit" />
           </div>
           <p className="text-muted-foreground">새로운 학습 여정을 시작하세요</p>
         </div>

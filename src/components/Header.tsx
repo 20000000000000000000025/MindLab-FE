@@ -7,12 +7,7 @@ export const Header = () => {
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container mx-auto px-4 h-16 flex items-center justify-between">
         <Link to="/" className="flex items-center space-x-2">
-          <div className="h-8 w-8 bg-gradient-primary rounded-lg flex items-center justify-center">
-            <Book className="h-5 w-5 text-white" />
-          </div>
-          <span className="text-xl font-bold bg-gradient-primary bg-clip-text text-transparent">
-            Quest Summary
-          </span>
+          <img src="/Logo.png" alt="MindLab" className="h-8 w-fit" />
         </Link>
 
         <nav className="hidden md:flex items-center space-x-6">
