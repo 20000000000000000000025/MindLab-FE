@@ -144,8 +144,7 @@ export const Upload = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-background to-muted/30 p-6">
       <div className="max-w-4xl mx-auto space-y-6">
-        {/* 헤더 */}
-        <div className="text-center">
+        <div className="text-center pt-6">
           <h1 className="text-3xl font-bold text-foreground mb-2">요약 업로드</h1>
           <p className="text-muted-foreground">학습 자료와 요약을 공유해보세요</p>
         </div>

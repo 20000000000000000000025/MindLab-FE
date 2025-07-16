@@ -32,8 +32,7 @@ export const Profile = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-background to-muted/30 p-6">
       <div className="max-w-4xl mx-auto space-y-6">
-        {/* 헤더 */}
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between pt-6">
           <h1 className="text-3xl font-bold text-foreground">프로필</h1>
           {!isEditing ? (
             <Button onClick={() => setIsEditing(true)} className="gap-2">
@@ -184,7 +183,7 @@ export const Profile = () => {
         </div>
 
         {/* 통계 카드들 */}
-        <div className="grid md:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-2 gap-6">
           <Card>
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
@@ -203,22 +202,8 @@ export const Profile = () => {
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-2xl font-bold text-primary">156</p>
-                  <p className="text-sm text-muted-foreground">조회한 요약</p>
-                </div>
-                <div className="h-12 w-12 bg-primary/10 rounded-lg flex items-center justify-center">
-                  <Mail className="h-6 w-6 text-primary" />
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-          
-          <Card>
-            <CardContent className="p-6">
-              <div className="flex items-center justify-between">
-                <div>
                   <p className="text-2xl font-bold text-primary">23</p>
-                  <p className="text-sm text-muted-foreground">즐겨찾기</p>
+                  <p className="text-sm text-muted-foreground">좋아요</p>
                 </div>
                 <div className="h-12 w-12 bg-primary/10 rounded-lg flex items-center justify-center">
                   <Calendar className="h-6 w-6 text-primary" />
@@ -261,12 +246,12 @@ export const Profile = () => {
           </CardContent>
         </Card>
 
-        {/* 즐겨찾기 */}
+        {/* 좋아요 */}
         <Card>
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Calendar className="h-5 w-5" />
-              즐겨찾기
+              좋아요
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -294,38 +279,7 @@ export const Profile = () => {
           </CardContent>
         </Card>
 
-        {/* 조회한 요약 */}
-        <Card>
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <Mail className="h-5 w-5" />
-              최근 조회한 요약
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-4">
-              {[
-                { id: "1", title: "Docker 컨테이너 운영", author: "최도커", subject: "DevOps", date: "2024-01-16" },
-                { id: "2", title: "GraphQL API 설계", author: "그래프", subject: "백엔드", date: "2024-01-14" },
-                { id: "3", title: "Vue.js 3 Composition API", author: "뷰개발", subject: "프론트엔드", date: "2024-01-11" }
-              ].map((item) => (
-                <div key={item.id} className="p-4 border rounded-lg hover:bg-muted/50 transition-colors">
-                  <div className="flex items-start justify-between">
-                    <div className="space-y-1">
-                      <div className="flex items-center gap-2">
-                        <Badge variant="outline" className="text-xs">{item.subject}</Badge>
-                        <span className="text-sm text-muted-foreground">by {item.author}</span>
-                        <span className="text-sm text-muted-foreground">{item.date}</span>
-                      </div>
-                      <h3 className="font-medium">{item.title}</h3>
-                    </div>
-                    <Button variant="outline" size="sm">제거</Button>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </CardContent>
-        </Card>
+        
       </div>
     </div>
   );

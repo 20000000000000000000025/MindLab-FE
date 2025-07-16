@@ -2,7 +2,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { SummaryList } from "./pages/SummaryList";
 import { Login } from "./pages/Login";
 import { Signup } from "./pages/Signup";
@@ -11,15 +11,18 @@ import { Upload } from "./pages/Upload";
 import { SummaryDetail } from "./pages/SummaryDetail";
 import { AuthorProfile } from "./pages/AuthorProfile";
 import NotFound from "./pages/NotFound";
+import { Header } from "@/components/Header";
 
 const queryClient = new QueryClient();
 
-const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
+const AppLayout = () => {
+  const location = useLocation();
+  const showHeader = !["/login", "/signup"].includes(location.pathname);
+
+  return (
+    <>
+      {showHeader && <Header />}
+      <main>
         <Routes>
           <Route path="/" element={<SummaryList />} />
           <Route path="/login" element={<Login />} />
@@ -28,9 +31,20 @@ const App = () => (
           <Route path="/upload" element={<Upload />} />
           <Route path="/summary/:id" element={<SummaryDetail />} />
           <Route path="/author/:authorId" element={<AuthorProfile />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
+      </main>
+    </>
+  );
+};
+
+const App = () => (
+  <QueryClientProvider client={queryClient}>
+    <TooltipProvider>
+      <Toaster />
+      <Sonner />
+      <BrowserRouter>
+        <AppLayout />
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>

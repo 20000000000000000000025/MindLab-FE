@@ -6,11 +6,13 @@ import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { ArrowLeft, Heart, Share, Download, Eye, Calendar, User, BookOpen } from "lucide-react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useState } from "react";
+import { ShareModal } from "@/components/ShareModal";
 
 export const SummaryDetail = () => {
   const navigate = useNavigate();
   const { id } = useParams();
   const [isFavorited, setIsFavorited] = useState(false);
+  const [isShareModalOpen, setIsShareModalOpen] = useState(false);
 
   // 샘플 데이터 - 실제로는 API에서 가져올 데이터
   const summary = {
@@ -168,9 +170,14 @@ React 애플리케이션에서 효율적인 컴포넌트 설계는 유지보수�
                   <Heart 
                     className={`h-4 w-4 ${isFavorited ? 'fill-red-500 text-red-500' : ''}`} 
                   />
-                  {isFavorited ? '즐겨찾기 해제' : '즐겨찾기'}
+                  {isFavorited ? '좋아요 해제' : '좋아요'}
                 </Button>
-                <Button variant="outline" size="sm" className="gap-2">
+                <Button 
+                  variant="outline" 
+                  size="sm" 
+                  className="gap-2"
+                  onClick={() => setIsShareModalOpen(true)}
+                >
                   <Share className="h-4 w-4" />
                   공유
                 </Button>
@@ -223,6 +230,14 @@ React 애플리케이션에서 효율적인 컴포넌트 설계는 유지보수�
           </Button>
         </div>
       </div>
+      <ShareModal
+        isOpen={isShareModalOpen}
+        onClose={() => setIsShareModalOpen(false)}
+        url={window.location.href}
+        title={summary.title}
+      />
     </div>
   );
 };
+
+export default SummaryDetail;

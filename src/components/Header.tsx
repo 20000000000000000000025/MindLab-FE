@@ -1,8 +1,11 @@
 import { Button } from "@/components/ui/button";
-import { Book, User, Upload, LogOut } from "lucide-react";
-import { Link } from "react-router-dom";
+import { User } from "lucide-react";
+import { NavLink, Link } from "react-router-dom";
 
 export const Header = () => {
+  const getNavLinkClass = ({ isActive }: { isActive: boolean }) =>
+    `relative text-sm font-medium transition-colors hover:text-primary ${isActive ? "text-primary" : "text-foreground/80"}`;
+
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container mx-auto px-4 h-16 flex items-center justify-between">
@@ -10,25 +13,31 @@ export const Header = () => {
           <img src="/Logo.png" alt="MindLab" className="h-8 w-fit" />
         </Link>
 
-        <nav className="hidden md:flex items-center space-x-6">
-          <Link 
-            to="/" 
-            className="text-sm font-medium text-foreground/80 hover:text-primary transition-smooth"
-          >
-            요약본 조회
-          </Link>
-          <Link 
-            to="/profile" 
-            className="text-sm font-medium text-foreground/80 hover:text-primary transition-smooth"
-          >
-            프로필
-          </Link>
-          <Link 
-            to="/upload" 
-            className="text-sm font-medium text-foreground/80 hover:text-primary transition-smooth"
-          >
-            업로드
-          </Link>
+        <nav className="hidden md:flex items-center space-x-8">
+          <NavLink to="/" className={getNavLinkClass}>
+            {({ isActive }) => (
+              <>
+                요약본 조회
+                {isActive && <span className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-full h-0.5 bg-primary rounded-full"></span>}
+              </>
+            )}
+          </NavLink>
+          <NavLink to="/profile" className={getNavLinkClass}>
+            {({ isActive }) => (
+              <>
+                프로필
+                {isActive && <span className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-full h-0.5 bg-primary rounded-full"></span>}
+              </>
+            )}
+          </NavLink>
+          <NavLink to="/upload" className={getNavLinkClass}>
+            {({ isActive }) => (
+              <>
+                업로드
+                {isActive && <span className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-full h-0.5 bg-primary rounded-full"></span>}
+              </>
+            )}
+          </NavLink>
         </nav>
 
         <div className="flex items-center space-x-4">

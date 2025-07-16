@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { Header } from "@/components/Header";
 import { SummaryCard } from "@/components/SummaryCard";
 import { SubjectFilter } from "@/components/SubjectFilter";
 import { SearchBar } from "@/components/SearchBar";
@@ -7,20 +6,23 @@ import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import heroImage from "@/assets/hero-banner.jpg";
 import { useNavigate } from 'react-router-dom';
+import { useDebounce } from "@/hooks/useDebounce";
 
 // Mock data
 const mockSummaries = Array.from({ length: 50 }, (_, i) => ({
   id: `summary-${i + 1}`,
   title: `학습 요약본 ${i + 1}: 주요 개념 정리`,
   content: `이 요약본은 중요한 학습 내용을 체계적으로 정리한 자료입니다. 핵심 개념들을 쉽게 이해할 수 있도록 구성되어 있으며, 효율적인 학습을 위한 다양한 방법론이 포함되어 있습니다.`,
-  userEmail: `student${i + 1}@example.com`,
+  authorName: `김학습${i + 1}`,
   subject: ["수학", "과학", "영어", "국어", "사회"][i % 5],
   viewCount: Math.floor(Math.random() * 1000) + 10,
+  likes: Math.floor(Math.random() * 500) + 5,
 }));
 
 export const SummaryList = () => {
   const [selectedSubject, setSelectedSubject] = useState("전체");
   const [searchQuery, setSearchQuery] = useState("");
+  const debouncedSearchQuery = useDebounce(searchQuery, 500);
   const [currentPage, setCurrentPage] = useState(1);
   const navigate = useNavigate();
   const itemsPerPage = 15;
@@ -28,9 +30,9 @@ export const SummaryList = () => {
   // Filter summaries
   const filteredSummaries = mockSummaries.filter((summary) => {
     const matchesSubject = selectedSubject === "전체" || summary.subject === selectedSubject;
-    const matchesSearch = searchQuery === "" || 
-      summary.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      summary.content.toLowerCase().includes(searchQuery.toLowerCase());
+    const matchesSearch = debouncedSearchQuery === "" || 
+      summary.title.toLowerCase().includes(debouncedSearchQuery.toLowerCase()) ||
+      summary.content.toLowerCase().includes(debouncedSearchQuery.toLowerCase());
     return matchesSubject && matchesSearch;
   });
 
@@ -41,7 +43,6 @@ export const SummaryList = () => {
 
   return (
     <div className="min-h-screen bg-gradient-subtle">
-      <Header />
       
       {/* Hero Section */}
       <section className="relative py-16 px-4">
@@ -65,7 +66,10 @@ export const SummaryList = () => {
         {/* Search and Filter */}
         <div className="bg-card rounded-xl shadow-card p-6 mb-8">
           <div className="flex flex-col lg:flex-row gap-4 items-start lg:items-center justify-between">
-            <SearchBar onSearch={setSearchQuery} />
+            <SearchBar 
+              value={searchQuery}
+              onChange={setSearchQuery} 
+            />
             <SubjectFilter 
               selectedSubject={selectedSubject}
               onSubjectChange={setSelectedSubject}
@@ -91,7 +95,7 @@ export const SummaryList = () => {
               {...summary}
               onClick={() => {
                 console.log("Navigate to detail:", summary.id)
-                navigate('/summary/:id')
+                navigate(`/summary/${summary.id}`)
               }}
             />
           ))}
@@ -140,4 +144,4 @@ export const SummaryList = () => {
       </section>
     </div>
   );
-};
+}

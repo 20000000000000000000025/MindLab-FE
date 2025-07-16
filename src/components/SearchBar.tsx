@@ -1,18 +1,16 @@
 import { Input } from "@/components/ui/input";
 import { Search } from "lucide-react";
-import { useState } from "react";
 
 interface SearchBarProps {
-  onSearch: (query: string) => void;
+  value: string;
+  onChange: (value: string) => void;
   placeholder?: string;
 }
 
-export const SearchBar = ({ onSearch, placeholder = "제목이나 내용으로 검색..." }: SearchBarProps) => {
-  const [query, setQuery] = useState("");
-
+export const SearchBar = ({ value, onChange, placeholder = "제목이나 내용으로 검색..." }: SearchBarProps) => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    onSearch(query);
+    // The actual search logic is now handled by the parent component
   };
 
   return (
@@ -21,13 +19,8 @@ export const SearchBar = ({ onSearch, placeholder = "제목이나 내용으로 �
       <Input
         type="text"
         placeholder={placeholder}
-        value={query}
-        onChange={(e) => {
-          setQuery(e.target.value);
-          if (e.target.value === "") {
-            onSearch("");
-          }
-        }}
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
         className="pl-10 transition-smooth focus:shadow-md"
       />
     </form>
